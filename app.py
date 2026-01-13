@@ -3,7 +3,7 @@ import google.generativeai as genai
 from PIL import Image
 
 # تأكدي من نسخ المفتاح كاملاً من موقع Google AI Studio
-genai.configure(api_key="AIzaSyD7O0uKyNEDC6t-0J00SDEpV4gOvBdUBNU")
+genai.configure(api_key="AIzaSyADNXSoyEIQcfPSnAzxKr0ZVmdELX16Q0M")
 
 st.title("مساعد المعلم الذكي ✨")
 st.write("جاهز لتحضير درس حالات المادة...")
@@ -22,3 +22,4 @@ if uploaded_file:
             st.markdown(response.text)
         except Exception as e:
             st.error(f"حدث خطأ في المفتاح: {e}") 
+
