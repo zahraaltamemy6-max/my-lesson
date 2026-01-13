@@ -1,9 +1,9 @@
-mport streamlit as st
+import streamlit as st
 import google.generativeai as genai
 from PIL import Image
 
-# إعداد المفتاح
-genai.configure(api_key="ضع_مفتاحك_هنا")
+# تأكدي من وضع مفتاحك الخاص هنا بين علامتي التنصيص
+genai.configure(api_key="AIzaSyD700uKyNEDC6t-0J00SDEpV4gOv8dUBMU")
 
 st.title("مساعد المعلم الذكي ✨")
 uploaded_file = st.file_uploader("اختر صورة الدرس...", type=["jpg", "jpeg", "png"])
