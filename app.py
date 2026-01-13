@@ -1,4 +1,17 @@
-mport streamlit as st
+Conversation opened. 1 unread message.
+
+Skip to content
+Using Gmail with screen readers
+1 of 16
+(no subject)
+Inbox
+
+zoozoo99 am92am77am177 <zamamam74@gmail.com>
+4:16 PM (0 minutes ago)
+to me
+
+It looks like this message is in Arabic
+import streamlit as st
 import google.generativeai as genai
 from PIL import Image
 
@@ -13,7 +26,7 @@ if uploaded_file is not None:
     st.image(image, caption='الصورة التي تم رفعها', use_column_width=True)
    
     if st.button('إعداد التحضير الآن'):
-        # التعديل هنا: استخدام الموديل الصحيح المتاح حالياً
+        # استخدام الموديل الصحيح لتحليل الصور
         model = genai.GenerativeModel('gemini-pro-vision')
-        response = model.generate_content(["قم بتحليل هذه الصورة واستخرج منها تحضيراً كاملاً يشمل: الأهداف، الوسائل، والاستراتيجيات.", image])
+        response = model.generate_content(["قم بتحليل هذه الصورة واستخرج منها تحضيراً كاملاً يشمل: الأهداف، الوسائل، والاستراتيجيات لدرس حالات المادة.", image])
         st.markdown(response.text) 
