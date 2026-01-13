@@ -22,7 +22,7 @@ if uploaded_file:
    
     if st.button("توليد المحتوى التعليمي"):
         try:
-            model = genai.GenerativeModel('gemini-1.5-flash')
+          model = genai.GenerativeModel('gemini-1.5-flash-latest') 
             # طلب شامل يخدم المعلم في أي مادة
             response = model.generate_content([
                 "أنت مساعد تعليمي خبير. حلل هذه الصورة وقدم للمعلم: 1. أهداف الدرس، 2. استراتيجيات تدريس مبتكرة، 3. خريطة مفاهيم، 4. أسئلة تقويمية.",
@@ -32,3 +32,4 @@ if uploaded_file:
             st.markdown(response.text)
         except Exception as e:
             st.error(f"تنبيه تقني: {e}") 
+
