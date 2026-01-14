@@ -17,9 +17,10 @@ if uploaded_file:
     st.image(img)
     if st.button("إعداد التحضير والوسائل"):
         try:
-            model = genai.GenerativeModel('gemini-1.5-flash')
+           model = genai.GenerativeModel('gemini-1.5-flash-latest') 
             response = model.generate_content(["بناءً على الصورة، قدم تحضيراً تربوياً وخريطة مفاهيم.", img])
             st.success("تم التحليل بنجاح!")
             st.write(response.text)
         except Exception as e:
             st.error(f"تنبيه تقني: {e}") 
+
