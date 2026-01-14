@@ -2,15 +2,15 @@ import streamlit as st
 import google.generativeai as genai
 from PIL import Image
 
-# إعداد المفتاح من الأسرار
+# قراءة المفتاح من الأسرار بأمان
 try:
     api_key = st.secrets["GOOGLE_API_KEY"]
     genai.configure(api_key=api_key)
 except:
-    st.error("يرجى التأكد من حفظ المفتاح في Secrets")
+    st.error("تأكد من إعداد المفتاح في Secrets")
 
 st.title("💡 مبادرة مساعد المعلم الذكي")
-uploaded_file = st.file_uploader("ارفع صورة الدرس (مثل حالات المادة)", type=["jpg", "png", "jpeg"])
+uploaded_file = st.file_uploader("ارفع صورة الدرس هنا", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
     img = Image.open(uploaded_file)
@@ -18,8 +18,8 @@ if uploaded_file:
    
     if st.button("إعداد التحضير والوسائل"):
         try:
-            # استخدام الموديل الصحيح لتجاوز خطأ 404
-            model = genai.GenerativeModel('gemini-1.5-flash')
+            # تم تحديث الموديل هنا إلى gemini-1.5-flash-latest ليعمل مع مفتاحك
+            model = genai.GenerativeModel('gemini-1.5-flash-latest')
             response = model.generate_content(["حلل الصورة تربوياً واقترح أهدافاً وخريطة مفاهيم", img])
             st.success("تم التحليل بنجاح!")
             st.markdown(response.text)
