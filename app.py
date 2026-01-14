@@ -2,25 +2,26 @@ import streamlit as st
 import google.generativeai as genai
 from PIL import Image
 
-# هذه هي الطريقة الصحيحة الوحيدة لقراءة المفتاح من الـ Secrets
+# إعداد المفتاح من الأسرار
 try:
     api_key = st.secrets["GOOGLE_API_KEY"]
     genai.configure(api_key=api_key)
-except Exception as e:
-    st.error("لم يتم العثور على المفتاح في الإعدادات السرية")
+except:
+    st.error("يرجى التأكد من حفظ المفتاح في Secrets")
 
 st.title("💡 مبادرة مساعد المعلم الذكي")
-uploaded_file = st.file_uploader("ارفع صورة الدرس", type=["jpg", "png", "jpeg"])
+uploaded_file = st.file_uploader("ارفع صورة الدرس (مثل حالات المادة)", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
     img = Image.open(uploaded_file)
-    st.image(img)
+    st.image(img, caption="المحتوى المطلوب تحليله")
+   
     if st.button("إعداد التحضير والوسائل"):
         try:
-           model = genai.GenerativeModel('gemini-1.5-flash-latest') 
-            response = model.generate_content(["بناءً على الصورة، قدم تحضيراً تربوياً وخريطة مفاهيم.", img])
+            # استخدام الموديل الصحيح لتجاوز خطأ 404
+            model = genai.GenerativeModel('gemini-1.5-flash')
+            response = model.generate_content(["حلل الصورة تربوياً واقترح أهدافاً وخريطة مفاهيم", img])
             st.success("تم التحليل بنجاح!")
-            st.write(response.text)
+            st.markdown(response.text)
         except Exception as e:
             st.error(f"تنبيه تقني: {e}") 
-
